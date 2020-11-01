@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>X人事管理-考勤管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/xadmin.css">
+    <script src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/xadmin.js"></script>
+    <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <script>
+        function dlink() {
+            document.location.href = "kaoqin.php";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a>
+              <cite>考勤管理</cite></a>
+          </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="dlink()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body ">
+                        <form class="layui-form layui-col-space5" method="POST" action="kaoqin_search.php">
+                            <div class="layui-inline layui-show-xs-block">
+                                <input class="layui-input" autocomplete="off" placeholder="日期" name="time" id="start">
+                            </div>
+                            <div class="layui-inline layui-show-xs-block">
+                                <input type="text" name="keywords" placeholder="请输入员工名字" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-inline layui-show-xs-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="sreach" name="sousuo"><i class="layui-icon">&#xe615;</i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-card-header">
+                        <button class="layui-btn" onclick="xadmin.open('添加用户','kaoqin_add.php',600,400)"><i class="layui-icon"></i>添加</button>
+                    </div>
+                    <div class="layui-card-body layui-table-body layui-table-main">
+                        <table class="layui-table layui-form" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">
+                                        <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
+                                    </th>
+                                    <th style="text-align: center;">ID</th>
+                                    <th style="text-align: center;">名字</th>
+                                    <th style="text-align: center;">员工编号</th>
+                                    <th style="text-align: center;">打卡时间</th>
+                                    <th style="text-align: center;">状态</th>
+                                    <th style="text-align: center;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = mysql_fetch_assoc($rs_result)) {?>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="id" value="1" lay-skin="primary">
+                                    </td>
+                                    <td>
+                                        <?php echo $row['id'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['name'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['number'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['time'];?>
+                                    </td>
+                                    <td class="td-status">
+                                        <span class="layui-btn layui-btn-normal layui-btn-mini"><?php echo $row['state'];?></span></td>
+                                    <td class="td-manage" style="text-align: center;">
+                                        <a title="编辑" href="javascript:xadmin.open('编辑','kaoqin_edit.php?id=<?php echo $row['id']?>')">
+                                            <i class="layui-icon">&#xe642;</i>
+                                        </a>
+                                        <a title="删除" href="javascript:member_del(<?php echo $row['id']?>)">
+                                            <i class="layui-icon">&#xe640;</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php }; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-card-body ">
+                        <div class="page">
+                            <div>
+                                <?php
+                                $sql = "SELECT * FROM kaoqin "; 
+                                $rs_result = mysql_query($sql); //查询数据
+                                $total_records = mysql_num_rows($rs_result);  // 统计总共的记录条数
+                                $total_pages = ceil($total_records / $num_rec_per_page);  // 计算总页数
+                                echo "<a href='kaoqin.php?page=1'>".'首页'."</a> "; // 第一页
+                    
+                                for ($i=1; $i<=$total_pages; $i++) { 
+                                            echo "<a  href='kaoqin.php?page=".$i."'>".$i."</a>"; 
+                                }; 
+                                echo " <a href=kaoqin.php?page=$total_pages'>".'尾页'."</a>"; // 最后一页
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    layui.use(['laydate', 'form'], function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+
+        // 监听全选
+        form.on('checkbox(checkall)', function(data) {
+
+            if (data.elem.checked) {
+                $('tbody input').prop('checked', true);
+            } else {
+                $('tbody input').prop('checked', false);
+            }
+            form.render('checkbox');
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+
+    });
+    /*用户-删除*/
+    function member_del(id) {
+        layer.confirm('确认要删除吗？', function(index) {
+            //发异步删除数据
+            window.location.href = "kaoqin_del.php?id=" + id;
+        });
+    }
+</script>
+
+</html>

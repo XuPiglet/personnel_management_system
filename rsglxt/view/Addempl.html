@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap wrap-category-edit">
+        <h1>添加员工</h1>
+        <div class="tips"></div>
+        <div class="box">
+            <div class="box-title">员工基础信息填写</div>
+            <div class="box-body">
+                <form method="post" action="Addempl.php">
+                    <table>
+                        <tr>
+                            <th width="80">Id：</th>
+                            <td><input type="text" name="idEm" value=""></td>
+                        </tr>
+                        <tr>
+                            <th width="80">状态：</th>
+                            <td><input type="text" name="stateEm" value=""></td>
+                        </tr>
+                        <tr>
+                            <th>编号：</th>
+                            <td>
+                                <input type="text" name="numEm" value="">
+                            </td>
+                        </tr>
+                        <tr class="s-author">
+                            <th>姓名：</th>
+                            <td><input type="text" name="nameEm" value=""></td>
+                        </tr>
+                        <tr class="s-keywords">
+                            <th>性别：</th>
+                            <!-- <td><input type="text" name="genderEm" value=""></td> -->
+                            <td>
+                                <select name="genderEm">
+                                    <option>请选择</option>
+                                    <option>男</option>
+                                    <option>女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="s-description">
+                            <th>年龄：</th>
+                            <td><input type="text" name="ageEm" value=""></td>
+                        </tr>
+                        <tr class="s-thumb">
+                            <th>所属部门：</th>
+                            <td><input type="text" name="departmentEm" value=""></td>
+                        </tr>
+                        <tr class="s-editor">
+                            <th>入职时间：</th>
+                            <td><input type="text" name="hiredateEm" value="" placeholder="格式：（例）2020-08-11"></td>
+                        </tr>
+                        <tr class="s-act">
+                            <th></th>
+                            <td><input type="submit" value="添加" name="add"><input type="button" value="返回" name="save" onclick="javascrtpt:window.location.href='Employee_nformation.php'" style="width: 50.67px; height: 32.4px;"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
