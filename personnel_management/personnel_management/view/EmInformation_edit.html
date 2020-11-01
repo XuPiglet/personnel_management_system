@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css/style.css">
+    <title>员工基础信息编辑</title>
+</head>
+
+<body>
+    <div class="wrap wrap-category-edit">
+        <h1>员工基础信息编辑</h1>
+        <div class="tips"></div>
+        <div class="box">
+            <div class="box-title">
+                基础信息：
+                <?php echo $row['name'];?>
+            </div>
+            <div class="box-body">
+                <form method="post" action="EmInformation_edit.php">
+                    <table>
+                        <tr>
+                            <th width="80">Id：</th>
+                            <td><input type="text" name="idEm" value="<?php echo $row['id'];?>" readonly></td>
+                        </tr>
+                        <tr>
+                            <th width="80">状态：</th>
+                            <td><input type="text" name="stateEm" value="<?php echo $row['state'];?>"></td>
+                        </tr>
+                        <tr>
+                            <th>编号：</th>
+                            <td>
+                                <input type="text" name="numEm" value="<?php echo $row['num'];?>" readonly>
+                            </td>
+                        </tr>
+                        <tr class="s-author">
+                            <th>姓名：</th>
+                            <td><input type="text" name="nameEm" value="<?php echo $row['name'];?>"></td>
+                        </tr>
+                        <tr class="s-keywords">
+                            <th>性别：</th>
+                            <!-- <td><input type="text" name="genderEm" value=""></td> -->
+                            <td>
+                                <select name="genderEm">
+                                    <option>请选择</option>
+                                    <option>男</option>
+                                    <option>女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="s-description">
+                            <th>年龄：</th>
+                            <td><input type="text" name="ageEm" value="<?php echo $row['age'];?>"></td>
+                        </tr>
+                        <tr class="s-thumb">
+                            <th>所属部门：</th>
+                            <td><input type="text" name="departmentEm" value="<?php echo $row['department'];?>"></td>
+                        </tr>
+                        <tr class="s-editor">
+                            <th>入职时间：</th>
+                            <td><input type="text" name="hiredateEm" value="<?php echo $row['hiredate'];?>" readonly></td>
+                        </tr>
+                        <tr class="s-editor">
+                            <th>离职时间：</th>
+                            <td><input type="text" name="leavedateEm" value="<?php echo $row['leavedate'];?>"></td>
+                        </tr>
+                        <tr class="s-act">
+                            <th></th>
+                            <td>
+                                <input type="submit" value="修改" name="revise">
+                                <input type="button" value="返回" name="save" onclick="javascrtpt:window.location.href='Employee_nformation.php'" style="width: 50.67px; height: 32.4px;">
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <title>员工工资管理</title>
+</head>
+
+<body>
+    <div class="wrap wrap-article">
+        <h1>工资管理</h1>
+        <div class="s-nav">
+            <div>
+                <form method="POST" action="searcha2.php">
+                    <input type="text" name="keywords2" value="" placeholder="输入关键字"><input type="submit" value="搜索人员" name="sousuo2">
+                </form>
+            </div>
+            <div class="add">
+                <form method="POST">
+                    <input type="button" name="Submit" value="返回" class="btn" onclick="location.href='Salary_management.php'" />
+                </form>
+            </div>
+        </div>
+        <div class="tips"></div>
+        <div class="box">
+            <div class="box-body">
+                <table>
+                    <tr>
+                        <!-- style="width: 0px;" -->
+                        <th style="width:70px">姓名</th>
+                        <th style="width:70px">职称</th>
+                        <th style="width:50px">月薪</th>
+                        <th style="width:50px">时薪</th>
+                        <th>缺勤天数</th>
+                        <th>加班时数</th>
+                        <th>正班薪资</th>
+                        <th>加班薪资</th>
+                        <th style="width:50px">津贴</th>
+                        <th style="width:60px">全勤奖</th>
+                        <th style="width:100px">请假缺勤扣款</th>
+                        <th>社保费用</th>
+                        <th>应得薪资</th>
+                        <th>个人扣税</th>
+                        <th>实发薪资</th>
+                        <th style="width:90px"> 信息操作</th>
+                    </tr>
+                    <?php while ($row = mysql_fetch_assoc($result)) {?>
+                    <tr>
+                        <td class="s-show">
+                            <?php echo $row['name'];?>
+                        </td>
+                        <td class="s-title ">
+                            <a target="panel" href="../view/login.html " target="_blank ">
+                                <?php echo $row['title'];?>
+                            </a>
+                        </td>
+                        <td>
+                            <?php echo $row['monthlysalary'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['hourlywage'];?>
+                        </td>
+                        <td>
+                            <a href="?cid=6 ">
+                                <?php echo $row['Absencedays'];?>
+                            </a>
+                        </td>
+                        <td>
+                            <?php echo $row['Overtimehours'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['ZhengBan'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['JiaBan'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['allowance'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['PA'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['DFAFW'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['SSF'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['DueToPay'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['PersonalTax'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['RHS'];?>
+                        </td>
+                        <td class="s-act "><a href="javascript:edit(<?php echo $row['id']?>)" class="jq-edit">编辑</a></td>
+                    </tr>
+                    <?php }; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function edit(id) {
+            window.location.href = "management_edit.php?id=" + id; //本页跳转
+        }
+    </script>
+</body>
+
+</html>

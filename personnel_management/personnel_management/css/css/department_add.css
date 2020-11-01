@@ -1,0 +1,134 @@
+/*后台通用*/
+
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif, simsun;
+    font-size: 13px;
+    color: #676a6c;
+    background-color: #fff;
+}
+
+h1 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #23282d;
+    color: #444;
+    font-family: 'Microsoft YaHei';
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.box {
+    margin-bottom: 18px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+    background: #fff;
+    font-size: 13px;
+}
+
+.box-title {
+    border-bottom: solid #dfe4e7 1px;
+    font-weight: bold;
+    padding: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+.box-body {
+    padding: 15px 15px 0 25px;
+    color: #555;
+    font-size: 14px;
+}
+
+.box-body p {
+    line-height: 20px;
+    text-indent: 12px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.wrap {
+    padding: 20px 30px;
+}
+
+.wrap-article {
+    min-width: 800px;
+}
+
+.wrap-article .box-body {
+    padding: 15px 30px 25px;
+}
+
+.wrap-article table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.wrap-article table tr:first-child {
+    background: #fff;
+}
+
+.wrap-article tr:hover {
+    background: #f5f9fd;
+}
+
+.wrap-article th {
+    height: 38px;
+    background: #eeeeee;
+}
+
+.wrap-article th.left {
+    text-indent: 10px;
+}
+
+.wrap-article td {
+    height: 38px;
+    border: 1px solid #cccccc;
+    padding: 0 10px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrap-article table a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.wrap-article table a:hover {
+    text-decoration: underline;
+}
+
+.wrap-article table tr {
+    background-color: #fff;
+}
+
+.wrap-article table tr td:first-child {
+    background-color: #d2eaff;
+}
+
+.wrap-article table tr td:last-child {
+    background-color: #eef7ff;
+}
+
+.wrap-article table tr td #xinxi {
+    height: 220px;
+    width: 288.8px;
+}

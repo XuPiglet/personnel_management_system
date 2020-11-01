@@ -1,0 +1,116 @@
+/*后台通用*/
+
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif, simsun;
+    font-size: 13px;
+    color: #676a6c;
+}
+
+h1 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    color: #23282d;
+    color: #444;
+    font-family: 'Microsoft YaHei';
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.box {
+    margin-bottom: 18px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+    background: #fff;
+    font-size: 13px;
+}
+
+.box-title {
+    border-bottom: solid #dfe4e7 1px;
+    font-weight: bold;
+    padding: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+.box-body {
+    padding: 15px 15px 0 25px;
+    color: #555;
+    font-size: 14px;
+}
+
+.box-body p {
+    line-height: 20px;
+    text-indent: 12px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.wrap {
+    padding: 20px 30px;
+}
+
+.wrap-category-edit {
+    max-width: 1000px;
+    min-width: 420px;
+}
+
+.wrap-category-edit .box-body {
+    padding: 20px 30px 50px 25px;
+}
+
+
+/* .wrap-category-edit th {
+    height: 38px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.wrap-category-edit td {
+    height: 38px;
+}
+
+.wrap-category-edit .s-act td {
+    height: 50px; 
+
+
+}*/
+
+.wrap-category-edit .box-title a {
+    text-decoration: none;
+    color: #555555;
+}
+
+.wrap-category-edit .box-title .bj {
+    float: right;
+}
+
+td {
+    padding: 0px;
+}
+
+.wrap-category-edit .box-body .table {
+    color: #676a6c;
+    width: 900px;
+}
+
+.wrap-category-edit .box-body .table tr td input {
+    border: none;
+    width: 98%;
+    height: 100%;
+    text-align: center;
+}

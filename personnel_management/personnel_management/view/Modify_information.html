@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css/style.css">
+    <title>修改管理员信息</title>
+</head>
+
+<body>
+    <div class="wrap wrap-category-edit">
+        <h1>修改管理员信息</h1>
+        <div class="tips"></div>
+        <div class="box">
+            <div class="box-title">修改信息</div>
+            <div class="box-body">
+                <form method="post" action="Modify_information.php">
+                    <table>
+                        <tr>
+                            <th width="80">姓名：</th>
+                            <td><input type="text" name="name" value="<?php echo $row['name'];?>"></td>
+                        </tr>
+                        <tr>
+                            <th>性别：</th>
+                            <td>
+                                <input type="text" name="gender" value="<?php echo $row['gender'];?>">
+                            </td>
+                        </tr>
+                        <tr class="s-author">
+                            <th>年龄：</th>
+                            <td><input type="text" name="age" value="<?php echo $row['age'];?>"></td>
+                        </tr>
+                        <tr class="s-keywords">
+                            <th>出生日期：</th>
+                            <td><input type="text" name="briday" value="<?php echo $row['briday'];?>"></td>
+                        </tr>
+                        <tr class="s-description">
+                            <th>电话号码：</th>
+                            <td><input type="text" name="ihpone" value="<?php echo $row['ihpone'];?>"></td>
+                        </tr>
+                        <tr class="s-thumb">
+                            <th>电子邮箱：</th>
+                            <td><input type="text" name="emil" value="<?php echo $row['emil'];?>"></td>
+                        </tr>
+                        <tr class="s-editor">
+                            <th>个人简介：</th>
+                            <td><textarea name="content"><?php echo $row['content'];?></textarea></td>
+                        </tr>
+                        <tr class="s-act">
+                            <th></th>
+                            <td><input type="submit" value="保存" name="button"><input type="submit" value="退出" name="save"></td>
+                        </tr>
+                        <input type="text" style="display:none" name="user" value="<?php echo $_SESSION['username'];?>" />
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

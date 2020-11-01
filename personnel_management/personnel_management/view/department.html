@@ -1,0 +1,145 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css/department.css">
+    <script src="js/jquery.min.js"></script>
+    <title>部门管理</title>
+    <script>
+        function checkAll() {
+            //1.获取编号前面的复选框
+            var checkAllEle = document.getElementById("box");
+            //2.对编号前面复选框的状态进行判断
+            if (checkAllEle.checked == true) {
+                //3.获取下面所有的复选框
+                var checkOnes = document.getElementsByName("checkOne");
+                //4.对获取的所有复选框进行遍历
+                for (var i = 0; i < checkOnes.length; i++) {
+                    //5.拿到每一个复选框，并将其状态置为选中
+                    checkOnes[i].checked = true;
+                }
+            } else {
+                //6.获取下面所有的复选框
+                var checkOnes = document.getElementsByName("checkOne");
+                //7.对获取的所有复选框进行遍历
+                for (var i = 0; i < checkOnes.length; i++) {
+                    //8.拿到每一个复选框，并将其状态置为未选中
+                    checkOnes[i].checked = false;
+                }
+            }
+        }
+
+        function check() {
+            //1.获取编号前面的复选框
+            var checkOnes = document.getElementsByName("checkOne");
+            //2.设置一个计数器
+            var a = 0;
+            //3.获取全选框的状态
+            var checkAllEle = document.getElementById("box");
+            //4.获取下面所有的复选框
+            for (var i = 0; i < checkOnes.length; i++) {
+                //5.如果复选框的状态是未选中
+                if (checkOnes[i].checked == false) {
+                    //6.设置全选框的状态为未选中
+                    checkAllEle.checked = false;
+                    //7.执行完毕关闭循环
+                    break;
+                }
+                //8.如果循环条件不成立，计数器加一
+                a++;
+            }
+            //9.判断计数器是否与复选框的的数量相等
+            if (a == checkOnes.length) {
+                //10.如果相等则设置全选框的状态为已选中
+                checkAllEle.checked = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap wrap-article">
+        <h1>部门列表</h1>
+        <div class="s-nav">
+            <div>
+                <form method="POST" action="department_search.php">
+                    <input type="text" name="keywords" value="" placeholder="输入关键字" style="width: 162px; height: 28px;">
+                    <input type="submit" value="搜索部门" name="sousuo">
+                </form>
+            </div>
+            <div>
+                <form method="POST" action="department.php">
+                    <input type="submit" value="刷新页面" name="shuaxin">
+                </form>
+            </div>
+        </div>
+        <div class="tips"></div>
+        <div class="box">
+            <div class="box-body">
+                <form action="">
+                    <table>
+                        <tr>
+                            <th style="width: 90px;">全选<input type="checkbox" id="box" onclick="checkAll()"></th>
+                            <th style="width: 70px;">Id</th>
+                            <th style="width: 150px;">部门名称</th>
+                            <th style="width: 90px;">部门人数</th>
+                            <th>详细信息</th>
+                            <th style="width: 150px;">操作</th>
+                        </tr>
+                        <?php while ($row = mysql_fetch_assoc($rs_result)) {?>
+                        <tr>
+                            <td class='s-show'>
+                                <input type="checkbox" onclick="check()" name="checkOne">
+                            </td>
+                            <td>
+                                <?php echo $row['id'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['name'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['Total'];?>
+                            </td>
+                            <td>
+                                <?php echo $row['information'];?>
+                            </td>
+                            <td class='s-act'>
+                                <a href="javascript:edit(<?php echo $row['id']?>)" class="jq-edit">编辑</a><a href=" javascript:del(<?php echo $row[ 'id']?>)" class="jq-del ">删除</a>
+                            </td>
+                        </tr>
+                        <?php }; ?>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="pagelist " id="pagelist">
+            <?php
+            $sql = "SELECT * FROM department "; 
+            $rs_result = mysql_query($sql); //查询数据
+            $total_records = mysql_num_rows($rs_result);  // 统计总共的记录条数
+            $total_pages = ceil($total_records / $num_rec_per_page);  // 计算总页数
+            echo "<a href='department.php?page=1'>".'首页'."</a> "; // 第一页
+
+            for ($i=1; $i<=$total_pages; $i++) { 
+                        echo "<a  href='department.php?page=".$i."'>".$i."</a>"; 
+            }; 
+            echo " <a href=department.php?page=$total_pages'>".'尾页'."</a>"; // 最后一页
+            ?>
+        </div>
+    </div>
+    <script>
+        function del(id) {
+            if (confirm("确认删除此部门？")) {
+                window.location.href = "department_del.php?id=" + id; //跳转
+            }
+        }
+
+        function edit(id) {
+            window.location.href = "department_edit.php?id=" + id; //本页跳转
+        }
+    </script>
+</body>
+
+</html>
